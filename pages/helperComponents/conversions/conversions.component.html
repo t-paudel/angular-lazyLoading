@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="form-group row">
+        <div class="col-md-12 col-xs-12">
+          <div class="card rebate-search">
+            <div class="card-title">
+              <h4 class="card-category">Conversions</h4>
+            </div>
+            <div class="card-body">
+              <div class="container-fluid">
+                <form name="conversionsForm" role="form" novalidate [formGroup]="conversionsForm">
+                  <div class="row">
+                    <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12">
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-12">
+                          <h6>Distributor :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                          <select class="form-control" name="distId" id="field_distId" formControlName="distId">
+                            <option value="null">--Select one--</option>
+                            <option value="dist1">dist1</option>
+                            <option value="dist2">dist2</option>
+                            <option value="dist3">dist3</option>
+                            <option value="dist4">dist4</option>
+                            <!-- <option [ngValue]="distIdOption.id" *ngFor="let distIdOption of uomProfileList">{{distIdOption.distId}}</option> -->
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-12"></div>
+                        <br>
+                        <div class="col-md-8 col-xs-12">
+                          <h6>Added Distributors :</h6>
+                          <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <div class="table-responsive">
+                                <table class="table table-striped">
+                                  <tbody>
+                                    <tr class="table-row" *ngFor="let row of displayDataForConversionArray;let i = index" (click)="onSelect(i)" (mouseover)="onHover(i)" 
+                                      (mouseout)="onDehover()" [ngClass] = "{'highlight' : hoveredRow==i,'selected':selectedRow==i}">
+                                      <td>{{ row.distId }}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 col-sm-10 col-xs-10 display-button-center">
+                        <button type="button" [disabled]="disableComponents" (click)="addRow()" class="btn btn-primary round-button"><span class="fa fa-plus"></span></button>
+                        <button type="button" [disabled]="disableComponents" (click)="deleteRow()" class="btn btn-primary round-button"><span class="fa fa-minus"></span></button>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-12">
+                          <h6>UOM Profile :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                          <select class="form-control" name="uomProfile" id="field_uomProfile" formControlName="uomProfile">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="uomOption.id" *ngFor="let uomOption of uoms">{{uomOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-12"></div>
+                        <br>
+                        <div class="col-md-8 col-xs-12">
+                          <h6>Added UOM Profile :</h6>
+                          <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <div class="table-responsive">
+                                <table class="table table-striped">
+                                  <tbody>
+                                    <tr class="table-row" *ngFor="let row of displayDataForConversionArray;let i = index" (click)="onSelect(i)" (mouseover)="onHover(i)"
+                                        (mouseout)="onDehover()" [ngClass] = "{'highlight' : hoveredRow==i,'selected':selectedRow==i}">
+                                      <td>{{ row.uomProfileName }}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 button-center">
+      <button type="button" class="btn btn-primary btn-round button-margin" (click)="previous()">Previous</button>
+      <button type="button" class="btn btn-primary btn-round button-margin"(click)="next()">Next</button>
+    </div>
+  </div>
+</div>
+          

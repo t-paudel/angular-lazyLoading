@@ -1,0 +1,136 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="form-group row">
+        <div class="col-md-12 col-xs-12">
+          <div class="card rebate-search">
+            <div class="card-title">
+              <h4 class="card-category">Add Item Pricing</h4>
+            </div>
+            <div class="card-body">
+              <div class="container-fluid">
+                <form name="pricingForm" role="form" novalidate [formGroup]="pricingForm">
+                  <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Pricing Qualifier Name :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <select class="form-control" name="priceQualifierName" id="field_priceQualifierName" formControlName="priceQualifierName">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="itemPricingQualifierOption.id" *ngFor="let itemPricingQualifierOption of itemPricingQualifier">
+                              {{itemPricingQualifierOption.priceQualifierName}}
+                            </option>
+                          </select>
+                          <div *ngIf="pricingForm.get('priceQualifierName').invalid && (pricingForm.get('priceQualifierName').dirty || pricingForm.get('priceQualifierName').touched)">
+                            <small class="form-text text-danger"
+                                    *ngIf="pricingForm.get('priceQualifierName').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                                This field cannot be longer than 50 characters.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Price :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <input type="number" class="form-control" name="itemPrice" id="field_itemPrice" formControlName="itemPrice"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <div formGroupName="itemPriceDateGroup">
+                          <div class="form-group row">
+                            <div class="col-md-5 col-xs-12">
+                              <h6>Start Date :</h6>
+                            </div>
+                            <div class="col-md-7 col-xs-12">
+                              <input id="field_startDate" type="date" class="form-control" name="startDate" formControlName="itemPriceStartDate" placeholder="YYYY-MM-DD"/>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-md-5 col-xs-12">
+                              <h6>End Date :</h6>
+                            </div>
+                            <div class="col-md-7 col-xs-12">
+                              <input id="field_endDate" type="date" class="form-control" name="endDate" formControlName="itemPriceEndDate" placeholder="YYYY-MM-DD"/>
+                              <small class="form-text text-danger"
+                                *ngIf="pricingForm.get(['itemPriceDateGroup']).errors?.EndDateGreater"
+                                jhiTranslate="entity.validation.required">
+                                End date should be greater than Start date.
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 align-add-remove-button">
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <button type="button" [disabled]="disableComponents" (click)="addRow()" class="btn btn-primary btn-round mobile-button">
+                            <span class="fa fa-plus"></span>
+                          </button>
+                        </div>
+                      </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="form-group row">
+        <div class="col-md-12 col-xs-12">
+          <div class="card rebate-table">
+            <div class="card-title">
+              <h4 class="card-category">Added Item Pricing</h4>
+            </div>
+            <div class="card-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="123">
+                        <thead>
+                          <tr>
+                            <th class="text-center" *ngFor="let row of headerRow" >{{ row }}</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngIf="(displayDataForPricingArray | json) != '{}'">
+                          <tr *ngFor="let row of displayDataForPricingArray; let i=index" (click)="onSelect(i)" (mouseover)="onHover(i)" (mouseout)="onDehover()"
+                            [ngClass] = "{'highlight' : hoveredRow==i,'selected':selectedRow==i}">
+                            <td><input [disabled]="disableComponents" type="text" class="form-control" [(ngModel)]="row.priceQualifierName"></td>
+                            <td><input [disabled]="disableComponents" type="text" class="form-control" [(ngModel)]="row.itemPrice"></td>
+                            <td><input [disabled]="disableComponents" type="date" class="form-control" [(ngModel)]="row.startDate"></td>
+                            <td><input [disabled]="disableComponents" type="date" class="form-control" [(ngModel)]="row.endDate"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 button-center">
+                    <button type="button" (click)="deleteRow()" [disabled]="deleteButtonDisabled && disableComponents" class="btn btn-danger btn-sm btn-round">
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 button-center">
+      <button type="button" class="btn btn-primary btn-round button-margin" (click)="previous()">Previous</button>
+      <button type="button" class="btn btn-primary btn-round button-margin"(click)="next()">Next</button>
+    </div>
+  </div>
+</div>

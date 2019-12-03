@@ -1,0 +1,703 @@
+<div class="container-fluid">
+  <form name="itemInformationForm" role="form" novalidate (ngSubmit)="next()" [formGroup]="itemInformationForm">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <div class="col-md-12 col-xs-12">
+            <!--Item-->
+            <div class="card rebate-search">
+              <div class="card-title">
+                <h4 class="card-category">Item</h4>
+              </div>
+
+              <div class="card-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-12">
+                          <h6>Item ID :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                          <input type="text" class="form-control" name="itemId" id="field_itemId" formControlName="itemId"/>
+                          
+                          <div *ngIf="itemInformationForm.get('itemId').invalid && (itemInformationForm.get('itemId').dirty || itemInformationForm.get('itemId').touched)">
+                            <small class="form-text text-danger"
+                                    *ngIf="itemInformationForm.get('itemId').errors.required" jhiTranslate="entity.validation.required">
+                              This field is required.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                          
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-12">
+                          <h6>Item # :<span style="color: red">*</span></h6>
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                          <input type="text" class="form-control" name="itemNo" id="field_itemNo" formControlName="itemNo"/>
+                          
+                          <div *ngIf="itemInformationForm.get('itemNo').invalid && (itemInformationForm.get('itemNo').dirty || itemInformationForm.get('itemNo').touched)">
+                            <small class="form-text text-danger"
+                                    *ngIf="itemInformationForm.get('itemNo').errors.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                *ngIf="itemInformationForm.get('itemNo').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 40 }">
+                            This field cannot be longer than 40 characters.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-12">
+                          <h6>Item Name :<span style="color: red">*</span></h6>
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                          <input type="text" class="form-control" name="itemName" id="field_itemName" formControlName="itemName"/>
+
+                          <div *ngIf="itemInformationForm.get('itemName').invalid && (itemInformationForm.get('itemName').dirty || itemInformationForm.get('itemName').touched)">
+                            <small class="form-text text-danger"
+                                    *ngIf="itemInformationForm.get('itemName').errors.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                    *ngIf="itemInformationForm.get('itemName').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 240 }">
+                            This field cannot be longer than 240 characters.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-12">
+                          <h6>Item Description :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                          <input type="text" class="form-control" name="itemDesc" id="field_itemDesc" formControlName="itemDesc"/>
+                          
+                          <div *ngIf="itemInformationForm.get('itemDesc').invalid && (itemInformationForm.get('itemDesc').dirty || itemInformationForm.get('itemDesc').touched)">
+                            <small class="form-text text-danger"
+                                *ngIf="itemInformationForm.get('itemDesc').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 4000 }">
+                            This field cannot be longer than 4000 characters.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-12">
+                          <h6>Item Type :<span style="color: red">*</span></h6>
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                          <select class="form-control" id="field_itemType" name="itemType" formControlName="itemTypeId">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="itemTypeOption.id" *ngFor="let itemTypeOption of itemtypes">
+                              {{itemTypeOption.description}}
+                            </option>
+                          </select>
+                          <div *ngIf="itemInformationForm.get('itemTypeId').invalid && (itemInformationForm.get('itemTypeId').dirty || itemInformationForm.get('itemTypeId').touched)">
+                            <small class="form-text text-danger"
+                                    *ngIf="itemInformationForm.get('itemTypeId').errors.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-12">
+                          <h6>Status :<span style="color: red">*</span></h6>
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                          <select class="form-control" id="field_statusId" name="statusId" formControlName="statusId">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="itemStatusOption.id" *ngFor="let itemStatusOption of itemstatuses">
+                              {{itemStatusOption.description}}
+                            </option>
+                          </select>
+                          <div *ngIf="itemInformationForm.get('statusId').invalid && (itemInformationForm.get('statusId').dirty || itemInformationForm.get('statusId').touched)">
+                            <small class="form-text text-danger"
+                                    *ngIf="itemInformationForm.get('statusId').errors.required" jhiTranslate="entity.validation.required">
+                              This field is required.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div formGroupName="itemDateGroup">
+                        <div class="form-group row">
+                          <div class="col-md-4 col-xs-12">
+                            <h6>Start Date :<span style="color: red">*</span></h6>
+                          </div>
+                          <div class="col-md-8 col-xs-12">
+                            <input id="field_itemStartDate" type="date" class="form-control" name="itemStartDate" formControlName="itemStartDate" placeholder="YYYY-MM-DD"/>
+                            <div
+                              *ngIf="itemInformationForm.get(['itemDateGroup','itemStartDate']).invalid && (itemInformationForm.get(['itemDateGroup','itemStartDate']).dirty || itemInformationForm.get(['itemDateGroup','itemStartDate']).touched)">
+                              <small class="form-text text-danger"
+                                *ngIf="itemInformationForm.get(['itemDateGroup','itemStartDate']).errors.required"
+                                jhiTranslate="entity.validation.required">
+                                This field is required.
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+              
+                        <div class="form-group row">
+                          <div class="col-md-4 col-xs-12">
+                            <h6>End Date :</span></h6>
+                          </div>
+                          <div class="col-md-8 col-xs-12">
+                            <input id="field_itemEndDate" type="date" class="form-control" name="itemEndDate" formControlName="itemEndDate" placeholder="YYYY-MM-DD"/>
+                            <small class="form-text text-danger"
+                              *ngIf="itemInformationForm.get(['itemDateGroup']).errors?.EndDateGreater"
+                              jhiTranslate="entity.validation.required">
+                              End date should be greater than Start date.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Strength :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <select class="form-control" id="field_strength" name="strength" formControlName="strengthId">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="strengthOption.id" *ngFor="let strengthOption of strengths">
+                              {{strengthOption.description}}
+                            </option>
+                        </select>
+                        </div>
+                      </div>
+              
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Rating :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <select class="form-control" id="field_rating" name="rating" formControlName="ratingId">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="ratingOption.id" *ngFor="let ratingOption of ratings">
+                              {{ratingOption.description}}
+                            </option>
+                        </select>
+                        </div>
+                      </div>
+              
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Form :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <select class="form-control" id="field_form" name="form" formControlName="formId">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="itemformTypeOption.id" *ngFor="let itemformTypeOption of itemformtypes">
+                              {{itemformTypeOption.description}}
+                            </option>
+                        </select>
+                        </div>
+                      </div>
+              
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Item Class :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <select class="form-control" id="field_itemClass" name="itemClass" formControlName="itemClassId">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="itemclassOption.id" *ngFor="let itemclassOption of itemclasses">
+                              {{itemclassOption.description}}
+                            </option>
+                        </select>
+                        </div>
+                      </div>
+    
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Inventory Location :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <input type="text" class="form-control" name="inventoryLocation" id="field_inventoryLocation" formControlName="inventoryLocation"/>
+                        </div>
+                        <div *ngIf="itemInformationForm.get('inventoryLocation').invalid && (itemInformationForm.get('inventoryLocation').dirty || itemInformationForm.get('inventoryLocation').touched)">
+                          <small class="form-text text-danger"
+                              *ngIf="itemInformationForm.get('inventoryLocation').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 30 }">
+                          This field cannot be longer than 30 characters.
+                          </small>
+                        </div>
+                      </div>
+                            
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Substitution :<span style="color: red">*</span></h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <select class="form-control" id="field_itemClass" name="itemClass" formControlName="substitution">
+                            <option value="null">--Select one--</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                          </select>
+
+                          <div *ngIf="itemInformationForm.get('substitution').invalid && (itemInformationForm.get('substitution').dirty || itemInformationForm.get('substitution').touched)">
+                            <small class="form-text text-danger"
+                                    *ngIf="itemInformationForm.get('substitution').errors.required" jhiTranslate="entity.validation.required">
+                              This field is required.
+                            </small>
+                          </div>
+                        </div>
+                        
+                      </div>
+                            
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Last Lot Expiration :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <input id="field_lastLotExpiration" type="date" class="form-control" name="lastLotExpiration" formControlName="lastLotExpiration" placeholder="YYYY-MM-DD"/>
+                        </div>
+                      </div>
+                            
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Divested Date :</span></h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <input id="field_divestedDate" type="date" class="form-control" name="divestedDate" formControlName="divestedDate" placeholder="YYYY-MM-DD"/>
+                        </div>
+                      </div>
+              
+                    </div>
+                        
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group row">
+                          <div class="col-md-5 col-xs-12">
+                            <h6>Primary UOM :<span style="color: red">*</span></h6>
+                          </div>
+                          <div class="col-md-7 col-xs-12">
+                            <select class="form-control" id="field_uom" name="uom" formControlName="uomId">
+                              <option [ngValue]="null">--Select one--</option>
+                              <option [ngValue]="uomOption.id" *ngFor="let uomOption of uoms">
+                                {{uomOption.description}}
+                              </option>
+                            </select>
+                            <div *ngIf="itemInformationForm.get('uomId').invalid && (itemInformationForm.get('uomId').dirty || itemInformationForm.get('uomId').touched)">
+                              <small class="form-text text-danger"
+                                      *ngIf="itemInformationForm.get('uomId').errors.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+              
+                        <div class="form-group row">
+                          <div class="col-md-5 col-xs-12">
+                            <h6>Secondary UOM :</h6>
+                          </div>
+                          <div class="col-md-7 col-xs-12">
+                            <select class="form-control" id="field_uom2" name="uom2" formControlName="uom2Id">
+                              <option [ngValue]="null">--Select one--</option>
+                              <option [ngValue]="uomOption.id" *ngFor="let uomOption of uoms">
+                                {{uomOption.description}}
+                              </option>
+                          </select>
+                          </div>
+                        </div>
+                            
+                        <div class="form-group row">
+                          <div class="col-md-5 col-xs-12">
+                            <h6>Package Size :<span style="color: red">*</span></h6>
+                          </div>
+                          <div class="col-md-7 col-xs-12">
+                            <input type="text" class="form-control" name="packageSize" id="field_packageSize" formControlName="packageSize"/>
+
+                            <div *ngIf="itemInformationForm.get('packageSize').invalid && (itemInformationForm.get('packageSize').dirty || itemInformationForm.get('packageSize').touched)">
+                              <small class="form-text text-danger"
+                                *ngIf="itemInformationForm.get('packageSize').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                              This field cannot be longer than 100 characters.
+                              </small>
+                              <small class="form-text text-danger"
+                                      *ngIf="itemInformationForm.get('packageSize').errors.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+              
+                        <div class="form-group row">
+                          <div class="col-md-5 col-xs-12">
+                            <h6>Additional Item Name :</h6>
+                          </div>
+                          <div class="col-md-7 col-xs-12">
+                            <input type="text" class="form-control" name="additionalItemName" id="field_additionalItemName" formControlName="additionalItemName"/>
+
+                            <div *ngIf="itemInformationForm.get('additionalItemName').invalid && (itemInformationForm.get('additionalItemName').dirty || itemInformationForm.get('additionalItemName').touched)">
+                              <small class="form-text text-danger"
+                                  *ngIf="itemInformationForm.get('additionalItemName').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 240 }">
+                              This field cannot be longer than 240 characters.
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+              
+                        <div class="form-group row">
+                          <div class="col-md-5 col-xs-12">
+                            <h6>Additional Item Desc :</h6>
+                          </div>
+                          <div class="col-md-7 col-xs-12">
+                            <input type="text" class="form-control" name="additionalItemDesc" id="field_additionalItemDesc" formControlName="additionalItemDesc"/>
+                            <div *ngIf="itemInformationForm.get('additionalItemDesc').invalid && (itemInformationForm.get('additionalItemDesc').dirty || itemInformationForm.get('additionalItemDesc').touched)">
+                              <small class="form-text text-danger"
+                                  *ngIf="itemInformationForm.get('additionalItemDesc').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
+                              This field cannot be longer than 500 characters.
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+              
+                        <div class="form-group row">
+                          <div class="col-md-5 col-xs-12">
+                            <h6>Item Code :</h6>
+                          </div>
+                          <div class="col-md-7 col-xs-12">
+                            <input type="text" class="form-control" name="itemCode" id="field_itemCode" formControlName="itemCode"/>
+                            <div *ngIf="itemInformationForm.get('itemCode').invalid && (itemInformationForm.get('itemCode').dirty || itemInformationForm.get('itemCode').touched)">
+                              <small class="form-text text-danger"
+                                *ngIf="itemInformationForm.get('itemCode').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                              This field cannot be longer than 50 characters.
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+              
+                        <div class="form-group row">
+                          <div class="col-md-5 col-xs-12">
+                            <h6>Line Extension :</span></h6>
+                          </div>
+                          <div class="col-md-7 col-xs-12">
+                            <select class="form-control" id="field_lineExtension" name="lineExtension" formControlName="lineExtension">
+                              <option value="null">--Select one--</option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
+                            </select>
+                          </div>
+                        </div>
+                    </div>
+              
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Item-->
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <div class="col-md-12 col-xs-12">
+        <!--Manufacturers-->
+        <div class="card rebate-search">
+          <div class="card-title">
+            <h4 class="card-category">Manufacturer</h4>
+          </div>
+          <div class="card-body">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <div class="form-group row">
+                    <div class="col-md-5 col-xs-12">
+                      <h6>Manufacturer # :<span style="color: red">*</span></h6>
+                    </div>
+                    <div class="col-md-7 col-xs-12">
+                      <select class="form-control" id="field_manufacturerNo" name="manufacturerNo" formControlName="manufacturerNoId" 
+                        [(ngModel)]="selectedManufacturerId" (change)="selectManufacturer()">
+                        <option [ngValue]="null">--Select one--</option>
+                        <option [ngValue]="manufacturerOption.id" *ngFor="let manufacturerOption of manufacturer">
+                          {{manufacturerOption.companyNo}}
+                        </option>
+                    </select>
+                    <div *ngIf="itemInformationForm.get('manufacturerNoId').invalid && (itemInformationForm.get('manufacturerNoId').dirty || itemInformationForm.get('manufacturerNoId').touched)">
+                      <small class="form-text text-danger"
+                              *ngIf="itemInformationForm.get('manufacturerNoId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                      </small>
+                    </div>
+
+                    </div>
+                  </div>
+                
+                  <div class="form-group row">
+                    <div class="col-md-5 col-xs-12">
+                      <h6>Manufacturer Name :</h6>
+                    </div>
+                    <div class="col-md-7 col-xs-12">
+                      <select class="form-control" id="field_manufacturerName" name="manufacturerName" formControlName="manufacturerNameId"
+                        [(ngModel)]="selectedManufacturerId" (change)="selectManufacturer()">
+                        <option [ngValue]="null">--Select one--</option>
+                        <option [ngValue]="manufacturerOption.id" *ngFor="let manufacturerOption of manufacturer">
+                          {{manufacturerOption.companyName}}</option>
+                    </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-md-5 col-xs-12">
+                      <h6>ZIP :</h6>
+                    </div>
+                    <div class="col-md-7 col-xs-12">
+                      <input type="text" class="form-control" name="address1" id="field_address1" formControlName="zip"/>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <div class="form-group row">
+                    <div class="col-md-5 col-xs-12">
+                      <h6>Address 1 :</h6>
+                    </div>
+                    <div class="col-md-7 col-xs-12">
+                      <input type="text" class="form-control" name="address1" id="field_address1" formControlName="address1"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-md-5 col-xs-12">
+                      <h6>Address 2 :</h6>
+                    </div>
+                    <div class="col-md-7 col-xs-12">
+                      <input type="text" class="form-control" name="address1" id="field_address1" formControlName="address2"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-md-5 col-xs-12">
+                      <h6>City :</h6>
+                    </div>
+                    <div class="col-md-7 col-xs-12">
+                      <input type="text" class="form-control" name="address1" id="field_address1" formControlName="city"/>
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  
+                  <div class="form-group row">
+                    <div class="col-md-5 col-xs-12">
+                      <h6>State :</h6>
+                    </div>
+                    <div class="col-md-7 col-xs-12">
+                      <input type="text" class="form-control" name="address1" id="field_address1" formControlName="state"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-md-5 col-xs-12">
+                      <h6>Country :</h6>
+                    </div>
+                    <div class="col-md-7 col-xs-12">
+                      <input type="text" class="form-control" name="address1" id="field_address1" formControlName="country"/>
+                    </div>
+                  </div>
+                </div>
+            
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+          
+        </div>
+        <!--Manufacturer-->
+      
+      </div>
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group row"> 
+          <div class="col-lg-12 col-md-12 col-xs-12">
+            <!--User Defined Codes-->
+            <div class="card rebate-search">
+              <div class="card-title">
+                <h4 class="card-category">User Defined Codes</h4>
+              </div>
+              <div class="card-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              
+                      <div class="form-group row">
+                  
+                        <div class="col-md-4 col-xs-4">
+                          <h6>UDC 1 :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-8">
+                          <select class="form-control" id="field_udcs" name="udcs" formControlName="udc1">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-4">
+                          <h6>UDC 2 :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-8">
+                          <select class="form-control" id="field_udcs" name="udcs" formControlName="udc2">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-4">
+                          <h6>UDC 3 :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-8">
+                          <select class="form-control" id="field_udcs" name="udcs" formControlName="udc3">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-4">
+                          <h6>UDC 4 :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-8">
+                          <select class="form-control" id="field_udcs" name="udcs" formControlName="udc4">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-4">
+                          <h6>UDC 5 :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-8">
+                          <select class="form-control" id="field_udcs" name="udcs" formControlName="udc5">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-4">
+                          <h6>UDC 6 :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-8">
+                          <select class="form-control" id="field_udcs" name="udcs" formControlName="udc6">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-4">
+                          <h6>UDC 7 :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-8">
+                          <select class="form-control" id="field_udcs" name="udcs" formControlName="udc7">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-4">
+                          <h6>UDC 8 :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-8">
+                          <select class="form-control" id="field_udcs" name="udcs" formControlName="udc8">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                    </div>
+                      
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-4">
+                          <h6>UDC 9 :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-8">
+                          <select class="form-control" id="field_udcs" name="udcs" formControlName="udc9">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-4">
+                          <h6>UDC 10 :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-8">
+                          <select class="form-control" id="field_udcs" name="udcs" formControlName="udc10">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-4 col-xs-4">
+                          <h6>UDC 11 :</h6>
+                        </div>
+                        <div class="col-md-8 col-xs-8">
+                          <select class="form-control" id="field_udcs" name="udcs" formControlName="udc11">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                          </select>
+                        </div>
+                      </div>  
+                      
+                      <div class="form-group row">
+                          <div class="col-md-4 col-xs-4">
+                            <h6>UDC 12 :</h6>
+                          </div>
+                          <div class="col-md-8 col-xs-8">
+                            <select class="form-control" id="field_udcs" name="udcs" formControlName="udc12">
+                              <option [ngValue]="null">--Select one--</option>
+                              <option [ngValue]="udcOption.id" *ngFor="let udcOption of udcs">{{udcOption.description}}</option>
+                            </select>
+                          </div>
+                        </div> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--User Defined Codes-->
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 button-center">
+        <button type="submit" class="btn btn-primary btn-round">Next</button>
+      </div>
+    </div>
+  </form>
+</div>

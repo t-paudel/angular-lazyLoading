@@ -1,0 +1,20 @@
+.rebate-search {
+  padding: 20px 10px;
+  h6 {
+    margin-top: 10px;
+    color: #9a9a9a;
+  }
+  ::ng-deep .selected-list .c-btn {
+    box-shadow: none !important;
+  }
+}
+
+table tr.highlight {
+  background-color: #2fa4e7 !important;
+  color: #ffffff;
+}
+
+table tr.selected {
+  background-color: #2683b9 !important;
+  color: #ffffff;
+}

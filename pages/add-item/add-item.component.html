@@ -1,0 +1,32 @@
+<ngb-tabset #tab (tabChange)="tabChange($event)">
+  <ngb-tab id="1" title="ITEM INFORMATION">
+    <ng-template ngbTabContent>
+      <jhi-item-information #childItem (nextTab)="nextTab()"></jhi-item-information>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="2" title="IDENTIFIERS">
+    <ng-template ngbTabContent>
+      <jhi-identifiers #childItem (nextTab)="nextTab()" (previousTab)="previousTab()"></jhi-identifiers>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="3" title="PRICING">
+    <ng-template ngbTabContent>
+      <jhi-pricing  #childItem (nextTab)="nextTab()" (previousTab)="previousTab()"></jhi-pricing>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="4" title="CONVERSIONS">
+    <ng-template ngbTabContent>
+      <jhi-conversions #childItem (nextTab)="nextTab()" (previousTab)="previousTab()"></jhi-conversions>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="5" title="ADDITIONAL INFORMATION">
+    <ng-template ngbTabContent>
+      <jhi-additional-information #childItem (nextTab)="nextTab()" (previousTab)="previousTab()"></jhi-additional-information>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="6" title="NOTES">
+    <ng-template ngbTabContent>
+      <jhi-notes #childItem (previousTab)="previousTab()"></jhi-notes>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

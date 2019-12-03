@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <form name="notesForm" role="form" novalidate [formGroup]="notesForm">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card mm-add">
+          <div class="card-title">
+            <h4 class="card-category">Enter Notes</h4>
+          </div>
+          <div class="card-body">
+            <textarea rows=10 cols=60 formControlName="notes"></textarea>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 button-center">
+                <button type="button" [disabled]="disableComponents" (click)="updateNotes()" class="btn btn-primary btn-round mobile-button add-button"><span class="fa fa-plus"></span>Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card mm-add">
+          <div class="card-title">
+            <h4 class="card-category">Notes History</h4>
+          </div>
+          <div class="card-body">
+            <textarea formControlName="internalNotes" rows=10 cols = 60></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 button-center">
+        <button type="button" class="btn btn-primary btn-round button-margin" (click)="previous()">Previous</button>
+        <button type="button" [disabled]="disableComponents" class="btn btn-primary btn-round button-margin"(click)="save()">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,380 @@
+<div class="container-fluid">
+  <form name="additionalInfoForm" role="form" novalidate [formGroup]="additionalInfoForm">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <div class="col-md-12 col-xs-12">
+            <div class="card rebate-search">
+              <div class="card-title">
+                <h4 class="card-category">Additional Information</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group row">
+                      <div class="col-md-5 col-xs-12">
+                        <h6>Labeler Code :</h6>
+                      </div>
+                      <div class="col-md-7 col-xs-12">
+                        <input type="text" class="form-control" name="labelercode" id="field_labelercode" formControlName="labelercode" />
+                        <div *ngIf="additionalInfoForm.get('labelercode').invalid && (additionalInfoForm.get('labelercode').dirty || additionalInfoForm.get('labelercode').touched)">
+                          <small class="form-text text-danger"
+                                  *ngIf="additionalInfoForm.get('labelercode').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                            This field cannot be longer than 100 characters.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <div class="form-group row">
+                      <div class="col-md-5 col-xs-12">
+                        <h6>Package Size Code :</h6>
+                      </div>
+                      <div class="col-md-7 col-xs-12">
+                        <input type="text" class="form-control" name="packagesizecode" id="field_packagesizecode" formControlName="packagesizecode"/>
+                        <div *ngIf="additionalInfoForm.get('packagesizecode').invalid && (additionalInfoForm.get('packagesizecode').dirty || additionalInfoForm.get('packagesizecode').touched)">
+                          <small class="form-text text-danger"
+                                *ngIf="additionalInfoForm.get('packagesizecode').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                          This field cannot be longer than 20 characters.
+                          </small>
+                        </div>
+                      </div>                          
+                    </div>
+                  </div>
+        
+                  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group row">
+                      <div class="col-md-5 col-xs-12">
+                        <h6>Package Size Intro Date :</h6>
+                      </div>
+                      <div class="col-md-7 col-xs-12">
+                        <input  id="field_packagesizeIntrodate" type="date" class="form-control" name="packagesizeIntrodate" formControlName="packagesizeIntrodate"
+                          placeholder="YYYY-MM-DD"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-5 col-xs-12">
+                        <h6>UPPS :</h6>
+                      </div>
+                      <div class="col-md-7 col-xs-12">
+                        <input type="text" class="form-control" name="upps" id="field_upps" formControlName="upps" />
+                        <div *ngIf="additionalInfoForm.get('upps').invalid && (additionalInfoForm.get('upps').dirty || additionalInfoForm.get('upps').touched)">
+                          <small class="form-text text-danger"
+                                  *ngIf="additionalInfoForm.get('upps').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                          This field cannot be longer than 100 characters.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group row">
+                      <div class="col-md-5 col-xs-12">
+                        <h6>Desi Indication :</h6>
+                      </div>
+                      <div class="col-md-7 col-xs-12">
+                        <select class="form-control" name="priceQualifierName" id="field_priceQualifierName" formControlName="desiindicationCode">
+                          <option [ngValue]="null">--Select one--</option>
+                          <!-- <option [ngValue]="itemMasterListOption.id" *ngFor="let itemMasterListOption of itemMasterList">{{itemMasterListOption.desiindicationCode}}</option> -->
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-5 col-xs-12">
+                        <h6>Margin :</h6>
+                      </div>
+                      <div class="col-md-7 col-xs-12">
+                        <input type="text" class="form-control" name="margin" id="field_margin" formControlName="margin" />
+                        <div *ngIf="additionalInfoForm.get('margin').invalid && (additionalInfoForm.get('margin').dirty || additionalInfoForm.get('margin').touched)">
+                          <small class="form-text text-danger"
+                                *ngIf="additionalInfoForm.get('margin').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 10 }">
+                            This field cannot be longer than 10 characters.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <div class="col-md-12 col-xs-12">
+            <div class="card rebate-search">
+              <div class="card-title">
+                <h4 class="card-category">Clotting Factor</h4>
+              </div>
+              <div class="card-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Indication :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <input type="radio" name="clottingFactor" id="field_clottingFactor" formControlName="clottingFactor" value="Y" />Yes
+                          <input type="radio" name="clottingFactor" id="field_clottingFactor" formControlName="clottingFactor" value="N" />No
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div formGroupName="clottingFactorDateGroup">
+                        <div class="form-group row">
+                          <div class="col-md-4 col-xs-12">
+                            <h6>Start Date :</h6>
+                          </div>
+                          <div class="col-md-8 col-xs-12">
+                            <input id="field_clottingfactorStartdate" type="date" class="form-control" name="clottingfactorStartdate" 
+                              formControlName="clottingfactorStartdate" placeholder="YYYY-MM-DD"/>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 col-xs-12">
+                            <h6>End Date :</h6>
+                          </div>
+                          <div class="col-md-8 col-xs-12">
+                            <input id="field_clottingfactorEnddate" type="date" class="form-control" name="clottingfactorEnddate" formControlName="clottingfactorEnddate"
+                              placeholder="YYYY-MM-DD"/>
+                            <small class="form-text text-danger"
+                              *ngIf="additionalInfoForm.get(['clottingFactorDateGroup']).errors?.EndDateGreater"
+                              jhiTranslate="entity.validation.required">
+                              End date should be greater than Start date.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <div class="col-md-12 col-xs-12">
+            <div class="card additional-info-search">
+              <div class="card-title">
+                <h4 class="card-category">Pediatric Exclusive</h4>
+              </div>
+              <div class="card-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Indication :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <input type="radio" name="pediatricExclusive" id="field_pediatricExclusive" formControlName="pediatricExclusive" value="Y" />Yes
+                          <input type="radio" name="pediatricExclusive" id="field_pediatricExclusive" formControlName="pediatricExclusive" value="N" />No
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div formGroupName="pediatricExclusiveDateGroup">
+                        <div class="form-group row">
+                          <div class="col-md-4 col-xs-12">
+                            <h6>Start Date :</h6>
+                          </div>
+                          <div class="col-md-8 col-xs-12">
+                            <input id="field_pediatricexclusiveStartdate" type="date" class="form-control" name="pediatricexclusiveStartdate" 
+                                  formControlName="pediatricexclusiveStartdate" placeholder="YYYY-MM-DD"/>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 col-xs-12">
+                            <h6>End Date :</h6>
+                          </div>
+                          <div class="col-md-8 col-xs-12">
+                            <input id="field_pediatricexclusiveEnddate" type="date" class="form-control" name="pediatricexclusiveEnddate" 
+                                formControlName="pediatricexclusiveEnddate" placeholder="YYYY-MM-DD"/>
+                            <small class="form-text text-danger"
+                              *ngIf="additionalInfoForm.get(['pediatricExclusiveDateGroup']).errors?.EndDateGreater"
+                              jhiTranslate="entity.validation.required">
+                              End date should be greater than Start date.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <div class="col-md-12 col-xs-12">
+            <div class="card additional-info-search">
+              <div class="card-title">
+                <h4 class="card-category">New Formulation</h4>
+              </div>
+              <div class="card-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Indication :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <input type="radio" name="newformulation" id="field_newformulation" formControlName="newformulation" value="Y" />Yes
+                          <input type="radio" name="newformulation" id="field_newformulation" formControlName="newformulation" value="N" />No
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                          <div class="col-md-4 col-xs-12">
+                            <h6>Item Name :</h6>
+                          </div>
+                          <div class="col-md-8 col-xs-12">
+                            <input type="text" class="form-control" name="newformulationproduct" id="field_newformulationproduct" 
+                              formControlName="newformulationproduct" />
+                            <div *ngIf="additionalInfoForm.get('newformulationproduct').invalid && (additionalInfoForm.get('newformulationproduct').dirty || additionalInfoForm.get('newformulationproduct').touched)">
+                              <small class="form-text text-danger"
+                                    *ngIf="additionalInfoForm.get('newformulationproduct').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                                This field cannot be longer than 100 characters.
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div formGroupName="newFormulationDateGroup">
+                          <div class="form-group row">
+                            <div class="col-md-4 col-xs-12">
+                              <h6>Start Date :</h6>
+                            </div>
+                            <div class="col-md-8 col-xs-12">
+                              <input id="field_newformulationStartdate" type="date" class="form-control" name="newformulationStartdate"
+                                formControlName="newformulationStartdate" placeholder="YYYY-MM-DD" />
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-md-4 col-xs-12">
+                              <h6>End Date :</h6>
+                            </div>
+                            <div class="col-md-8 col-xs-12">
+                              <input id="field_newformulationEnddate" type="date" class="form-control" name="newformulationEnddate"
+                                formControlName="newformulationEnddate" placeholder="YYYY-MM-DD" />
+                              <small class="form-text text-danger"
+                                *ngIf="additionalInfoForm.get(['newFormulationDateGroup']).errors?.EndDateGreater"
+                                jhiTranslate="entity.validation.required">
+                                End date should be greater than Start date.
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            
+                  </div>
+                </div>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <div class="col-md-12 col-xs-12">
+            <div class="card additional-info-search">
+              <div class="card-title">
+                <h4 class="card-category">Brand Information</h4>
+              </div>
+              <div class="card-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Indication :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <input type="radio" name="brandInformation" id="field_brandInformation" formControlName="brandInformation" value="Y" />Yes
+                          <input type="radio" name="brandInformation" id="field_brandInformation" formControlName="brandInformation" value="N" />No
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group row">
+                          <div class="col-md-4 col-xs-12">
+                            <h6>Item Name :</h6>
+                          </div>
+                          <div class="col-md-8 col-xs-12">
+                            <input type="text" class="form-control" name="brandInformationProduct" id="field_brandInformationProduct" formControlName="brandInformationProduct"/>
+                            <div *ngIf="additionalInfoForm.get('brandInformationProduct').invalid && (additionalInfoForm.get('brandInformationProduct').dirty || additionalInfoForm.get('brandInformationProduct').touched)">
+                              <small class="form-text text-danger"
+                                    *ngIf="additionalInfoForm.get('brandInformationProduct').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                                This field cannot be longer than 100 characters.
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div formGroupName="brandInformationDateGroup">
+                          <div class="form-group row">
+                            <div class="col-md-4 col-xs-12">
+                              <h6>Start Date :</h6>
+                            </div>
+                            <div class="col-md-8 col-xs-12">
+                                <input id="field_brandInformationStartdate" type="date" class="form-control" name="brandInformationStartdate" 
+                                    formControlName="brandInformationStartdate" placeholder="YYYY-MM-DD"/>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-md-4 col-xs-12">
+                              <h6>End Date :</h6>
+                            </div>
+                            <div class="col-md-8 col-xs-12">
+                              <input id="field_brandInformationEnddate" type="date" class="form-control" name="brandInformationEnddate" 
+                                  formControlName="brandInformationEnddate" placeholder="YYYY-MM-DD"/>
+                                <small class="form-text text-danger"
+                                  *ngIf="additionalInfoForm.get(['brandInformationDateGroup']).errors?.EndDateGreater"
+                                  jhiTranslate="entity.validation.required">
+                                  End date should be greater than Start date.
+                                </small>  
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            
+                  </div>
+                </div>
+              </div>
+            </div>   
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 button-center">
+        <button type="button" class="btn btn-primary btn-round button-margin" (click)="previous()">Previous</button>
+        <button type="button" class="btn btn-primary btn-round button-margin"(click)="next()">Next</button>
+      </div>
+    </div>
+      
+  </form>
+</div>

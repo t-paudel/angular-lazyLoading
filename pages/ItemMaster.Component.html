@@ -1,0 +1,175 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="search()" [formGroup]="editForm">
+<div class="card rebate-search">
+    <div class="card-title">
+      <h4 class="card-category">Item Master Search</h4>
+    </div>
+    <div class="card-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group row">
+              <div class="col-md-4 col-xs-12">
+                <h6>Item ID :</h6>
+              </div>
+              <div class="col-md-8 col-xs-12">
+                  <input type="text" value="" placeholder="" class="form-control" formControlName="itemId"/>
+              </div>
+            </div>
+              
+            <div class="form-group row">
+              <div class="col-md-4 col-xs-12">
+                <h6>Item Name :</h6>
+              </div>
+              <div class="col-md-8 col-xs-12">
+                  <input type="text" class="form-control" name="itemName" id="field_itemName" formControlName="itemName"/>
+              </div>
+            </div>
+        
+            <jhi-alert-error></jhi-alert-error> 
+            <div class="form-group row">
+              <div class="col-md-4 col-xs-12">
+                <h6>Item # :</h6>
+              </div>
+              <div class="col-md-8 col-xs-12">
+                <input type="text" class="form-control" name="itemNo" id="field_itemNo" formControlName="itemNo"/>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group row">
+              <div class="col-md-5 col-xs-12">
+                <h6>Item Description :</h6>
+              </div>
+              <div class="col-md-7 col-xs-12">
+                  <input type="text" class="form-control" name="itemDesc" id="field_itemDesc" formControlName="itemDesc"/>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <div class="col-md-5 col-xs-12">
+                <h6>Identifier Type :</h6>
+              </div>
+              <div class="col-md-7 col-xs-12">
+                  <select class="form-control" id="field_identifierCodeQualifierName" name="identifierCodeQualifierName" formControlName="identifierCodeQualifierName">
+                    <option [ngValue]="null">--Select one--</option>
+                    <option [ngValue]="itemDrtIdentifierOption.id" *ngFor="let itemDrtIdentifierOption of itemdrtidentifiers">
+                      {{itemDrtIdentifierOption.identifierCodeQualifierName}}
+                    </option>
+                  </select>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <div class="col-md-5 col-xs-12">
+                <h6>Manufacturer # :</h6>
+              </div>
+              <div class="col-md-7 col-xs-12">
+                <select class="form-control" id="field_manufacturerNo" name="manufacturerNo" formControlName="manufacturerNoId">
+                  <option [ngValue]="null">--Select one--</option>
+                  <option [ngValue]="manufacturerOption.id" *ngFor="let manufacturerOption of manufacturer">
+                      {{manufacturerOption.companyNo}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group row">
+              <div class="col-md-5 col-xs-12">
+                <h6>Item Type :</h6>
+              </div>
+              <div class="col-md-7 col-xs-12">
+                <select class="form-control" id="field_manufacturerNo" name="manufacturerNo" formControlName="itemTypeId">
+                  <option [ngValue]="null">--Select one--</option>
+                  <option [ngValue]="itemTypeOption.id" *ngFor="let itemTypeOption of itemtypes">
+                    {{itemTypeOption.description}}
+                  </option>
+                </select>
+              </div>
+            </div>
+        
+            <div class="form-group row">
+              <div class="col-md-5 col-xs-12">
+                <h6>Status :</h6>
+              </div>
+              <div class="col-md-7 col-xs-12">
+                <select class="form-control" id="field_statusId" name="statusId" formControlName="statusId">
+                  <option [ngValue]="null">--Select one--</option>
+                  <option [ngValue]="itemStatusOption.id" *ngFor="let itemStatusOption of itemstatuses">
+                    {{itemStatusOption.description}}</option>
+                </select>
+              </div>
+            </div>  
+        
+            <div class="form-group row">
+              <div class="col-md-5 col-xs-12">
+                <h6>Identifier :</h6>
+              </div>
+              <div class="col-md-7 col-xs-12">
+                <input type="text" value="" placeholder="" class="form-control" formControlName="identifierCodeQualifier"/>
+              </div>
+            </div>
+        
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-2 col-md-6 col-sm-10 col-xs-10 ml-auto mr-auto">
+            <button type="button" (click)="search()" class="btn btn-primary btn-round">Search</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+</form>
+
+<div class="card rebate-table">
+  <div class="card-title">
+    <h4 class="card-category">Item Master Results</h4>
+  </div>
+  <div class="card-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="table-responsive">
+            <table class="table table-striped" id="itemMasterSearchResult">
+              <thead>
+                <tr>
+                  <th>{{ headerRowForItemMaster[0] }}</th>
+                  <th>{{ headerRowForItemMaster[1] }}</th>
+                  <th>{{ headerRowForItemMaster[2] }}</th>
+                  <th>{{ headerRowForItemMaster[3] }}</th>
+                  <th>{{ headerRowForItemMaster[4] }}</th>
+                  <th>{{ headerRowForItemMaster[5] }}</th>
+                  <th>{{ headerRowForItemMaster[6] }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of itemMasterList;let i = index" (click)="onSelect(i)" (mouseover)="onHover(i)" 
+                  (mouseout)="onDehover()" [ngClass] = "{'highlight' : hoveredRow==i,'selected':selectedRow==i}">
+                  <td>{{row.id}}</td>
+                  <td>{{row.itemNo}}</td>
+                  <td>{{row.itemName}}</td>
+                  <td>{{row.itemDesc}}</td>
+                  <td>{{row.itemTypeName}}</td>
+                  <td>{{row.itemStatus}}</td>
+                  <td>{{row.manufactureNo}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+
+<div>
+  <button type="button" (click)="reset()" class="btn btn-primary btn-round mobile-button"><span class="fa fa-refresh"></span>Reset</button>
+  <button type="button" (click)="export('itemMasterSearchResult')" class="btn btn-primary btn-round mobile-button">Export</button>
+  <button type="button" [routerLink]="['/globalfiles/itm/add']" class="btn btn-primary btn-round mobile-button"><span class="fa fa-plus"></span>Add</button>
+  <button type="button" (click)="updateItem()" class="btn btn-primary btn-round mobile-button"><span class="fa fa-edit"></span>Edit</button>
+  <button type="button" (click)="viewItem()" class="btn btn-primary btn-round mobile-button"><i class="fa fa-eye"></i>View</button>
+  <button type="button" (click)="deleteItem()" class="btn btn-primary btn-round mobile-button"><span class="fa fa-trash"></span>Delete</button>
+</div>

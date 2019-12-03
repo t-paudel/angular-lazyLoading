@@ -1,0 +1,149 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="form-group row">
+        <div class="col-md-12 col-xs-12">
+          <div class="card rebate-search">
+            <div class="card-title">
+              <h4 class="card-category">Add Identifiers</h4>
+            </div>
+
+            <div class="card-body">
+              <div class="container-fluid">
+                <form name="identifiersForm" role="form" novalidate [formGroup]="identifiersForm">
+                  <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Identifier Code Qualifier Name :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <select class="form-control" name="identifierCodeQualifierName" id="field_identifierCodeQualifierName" formControlName="identifierCodeQualifierName">
+                            <option [ngValue]="null">--Select one--</option>
+                            <option [ngValue]="itemdrtidentifiersOption.id" *ngFor="let itemdrtidentifiersOption of itemdrtidentifiers">
+                              {{ itemdrtidentifiersOption.identifierCodeQualifierName }}
+                            </option>
+                          </select>
+                          <div *ngIf="identifiersForm.get('identifierCodeQualifierName').invalid && (identifiersForm.get('identifierCodeQualifierName').dirty ||
+                                identifiersForm.get('identifierCodeQualifierName').touched)">
+                            <small class="form-text text-danger" *ngIf="identifiersForm.get('identifierCodeQualifierName').errors.maxlength" 
+                              jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 360 }">
+                                This field cannot be longer than 50 characters.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <h6>Identification Code :</h6>
+                        </div>
+                        <div class="col-md-7 col-xs-12">
+                          <input type="text" class="form-control" name="identifierCodeQualifier" id="field_identifierCodeQualifier" formControlName="identifierCodeQualifier"/>
+                          <div *ngIf="identifiersForm.get('identifierCodeQualifier').invalid && 
+                            (identifiersForm.get('identifierCodeQualifier').dirty || identifiersForm.get('identifierCodeQualifier').touched)">
+                            <small class="form-text text-danger" *ngIf="identifiersForm.get('identifierCodeQualifier').errors.maxlength"
+                              jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                                This field cannot be longer than 50 characters.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <div formGroupName="identifierDateGroup">
+                        <div class="form-group row">
+                          <div class="col-md-5 col-xs-12">
+                            <h6>Start Date :</h6>
+                          </div>
+                          <div class="col-md-7 col-xs-12">
+                            <input id="field_startDate" type="date" class="form-control" name="startDate" formControlName="identifierStartDate" placeholder="YYYY-MM-DD"/>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-5 col-xs-12">
+                            <h6>End Date :</h6>
+                          </div>
+                          <div class="col-md-7 col-xs-12">
+                            <input id="field_endDate" type="date" class="form-control" name="endDate" formControlName="identifierEndDate" placeholder="YYYY-MM-DD"/>
+                            <div>
+                              <small class="form-text text-danger"
+                                *ngIf="identifiersForm.get(['identifierDateGroup']).errors?.EndDateGreater"
+                                jhiTranslate="entity.validation.required">
+                                End date should be greater than Start date.
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 align-add-remove-button">
+                      <div class="form-group row">
+                        <div class="col-md-5 col-xs-12">
+                          <button type="button" (click)="addRow()" [disabled]="disableComponents" class="btn btn-primary btn-round mobile-button">
+                            <span class="fa fa-plus"></span>
+                          </button>
+                        </div>
+                      </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="form-group row">
+        <div class="col-md-12 col-xs-12">
+        <div class="card rebate-table">
+          <div class="card-title">
+            <h4 class="card-category">Added Identifiers</h4>
+          </div>
+          <div class="card-body">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th class="text-center" *ngFor="let row of headerRow" >{{ row }}</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="(displayDataForIdentifiersArray | json) != '{}'">
+                        <tr *ngFor="let row of displayDataForIdentifiersArray;let i = index" (click)="onSelect(i)" (mouseover)="onHover(i)" (mouseout)="onDehover()"
+                              [ngClass] = "{'highlight' : hoveredRow==i,'selected':selectedRow==i}">
+                          <td><input [disabled]="disableComponents" type="text" class="form-control" [(ngModel)]="row.identifierCodeQualifierName"></td>
+                          <td><input [disabled]="disableComponents" type="text" class="form-control" [(ngModel)]="row.itemIrtIdentifier"></td>
+                          <td><input [disabled]="disableComponents" type="date" class="form-control" [(ngModel)]="row.startDate"></td>
+                          <td><input [disabled]="disableComponents" type="date" class="form-control" [(ngModel)]="row.endDate"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 button-center">
+                  <button type="button" (click)="deleteRow()" [disabled]="deleteButtonDisabled && disableComponents" class="btn btn-danger btn-sm btn-round">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 button-center">
+      <button type="button" class="btn btn-primary btn-round button-margin" (click)="previous()">Previous</button>
+      <button type="button" class="btn btn-primary btn-round button-margin"(click)="next()">Next</button>
+    </div>
+  </div>
+</div>
+
